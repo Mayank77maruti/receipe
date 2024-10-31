@@ -24,30 +24,22 @@ List the technologies and frameworks you used (e.g., CopilotKit, Next.js)
 - Shadcn-UI Component Styling
 - CopilotKit
 
-## 4. GitHub Project Link
-
 ### GitHub Repo Link: 
+https://github.com/Mayank77maruti/receipeGenerator
 
 ### 5 Live Link
 
-- [Live app]()
+- [Live app](https://receipe-generator-1zyq.vercel.app/)
  
-## 6. Screenshot
-
-![image](https://github.com/user-attachments/assets/73a331d4-e6c0-4303-82da-2558d106f4bf)
-
-![image](https://github.com/user-attachments/assets/22388ceb-6ef6-4e6f-a2e4-34f9ebe43105)
-
-
 ## 7. Who am i?
 
 Please list your **GitHub** and **Twitter** handles if you feel comfortable doing so. 
 
-- [sanket on github](https://github.com/sanketshinde3001)
-- [sanket on X](https://x.com/sanketshinde04)
+- [github](https://github.com/Mayank77maruti)
+- [X](https://x.com/MayankMoha31086)
 
 ## 8. Posts
 
-- A dev.to blog link - [Link](https://dev.to/sanketshinde/recipe-generator-powered-by-copilotkit-chatbot-2nl0)
-- Tweet link - [Link](https://x.com/sanketshinde04/status/1845898967038521511)
+- A dev.to blog link - [Link](https://dev.to/mayank_mohapatra/recipe-generator-powered-by-copilotkit-chatbot-1mlg)
+- Tweet link - [Link](https://x.com/MayankMoha31086/status/1851935687018508434)
 
