@@ -32,7 +32,6 @@ jobs:
         env:
           SKIP_AUDIT_FAILURE: 'true' # Skip failure and continue
 
-
       # Step 6: Secret Scanning (e.g., with TruffleHog or Gitleaks)
       - name: Run Gitleaks
         uses: zricethezav/gitleaks-action@v2
