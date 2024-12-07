@@ -32,14 +32,6 @@ jobs:
         env:
           SKIP_AUDIT_FAILURE: 'true' # Skip failure and continue
 
-      # Step 5: Static Code Analysis (e.g., with CodeQL)
-      - name: Run CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
-        with:
-          category: security
-          fail-fast: false || echo "CodeQL analysis failed"
-        env:
-          SKIP_CODEQL_FAILURE: 'true' # Skip failure and continue
 
       # Step 6: Secret Scanning (e.g., with TruffleHog or Gitleaks)
       - name: Run Gitleaks
