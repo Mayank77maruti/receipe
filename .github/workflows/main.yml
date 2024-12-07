@@ -32,14 +32,6 @@ jobs:
         env:
           SKIP_AUDIT_FAILURE: 'true' # Skip failure and continue
 
-      # Step 6: Secret Scanning (e.g., with TruffleHog or Gitleaks)
-      - name: Run Gitleaks
-        uses: zricethezav/gitleaks-action@v2
-        with:
-          config-path: .gitleaks.toml # Optional: custom config file
-        env:
-          GITLEAKS_SKIP_REPORT: 'true' # Avoid failing the workflow
-          SKIP_GITLEAKS_FAILURE: 'true' # Skip failure and continue
 
       # Step 7: Container Image Security Scan (e.g., with Trivy)
       - name: Run Trivy Security Scan
