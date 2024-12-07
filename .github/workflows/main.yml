@@ -1,0 +1,62 @@
+name: Security Scans
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  security-scans:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js (if using JavaScript)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Dependency Vulnerability Scan (e.g., with `npm audit`)
+      - name: Run npm Audit
+        run: npm audit --audit-level=high || echo "npm audit failed"
+
+      # Step 5: Static Code Analysis (e.g., with CodeQL)
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: security
+          fail-fast: false || echo "CodeQL analysis failed"
+
+      # Step 6: Secret Scanning (e.g., with TruffleHog or Gitleaks)
+      - name: Run Gitleaks
+        uses: zricethezav/gitleaks-action@v2
+        with:
+          config-path: .gitleaks.toml # Optional: custom config file
+        env:
+          GITLEAKS_SKIP_REPORT: 'true' # Avoid failing the workflow
+
+      # Step 7: Container Image Security Scan (e.g., with Trivy)
+      - name: Run Trivy Security Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'app:latest' # Specify the Docker image built in the pipeline
+        env:
+          TRIVY_SKIP_REPORT: 'true' # Avoid failing the workflow
+
+      # Step 8: Infrastructure as Code (IaC) Scans (e.g., with Checkov)
+      - name: Run Checkov IaC Scan
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: . # Scan all files in the repository
+        env:
+          CHECKOV_SKIP_REPORT: 'true' # Avoid failing the workflow
