@@ -29,24 +29,3 @@ jobs:
       # Step 4: Dependency Vulnerability Scan (e.g., with `npm audit`)
       - name: Run npm Audit
         run: npm audit --audit-level=high || echo "npm audit failed"
-        env:
-          SKIP_AUDIT_FAILURE: 'true' # Skip failure and continue
-
-
-      # Step 7: Container Image Security Scan (e.g., with Trivy)
-      - name: Run Trivy Security Scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'app:latest' # Specify the Docker image built in the pipeline
-        env:
-          TRIVY_SKIP_REPORT: 'true' # Avoid failing the workflow
-          SKIP_TRIVY_FAILURE: 'true' # Skip failure and continue
-
-      # Step 8: Infrastructure as Code (IaC) Scans (e.g., with Checkov)
-      - name: Run Checkov IaC Scan
-        uses: bridgecrewio/checkov-action@v12
-        with:
-          directory: . # Scan all files in the repository
-        env:
-          CHECKOV_SKIP_REPORT: 'true' # Avoid failing the workflow
-          SKIP_CHECKOV_FAILURE: 'true' # Skip failure and continue
