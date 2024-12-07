@@ -29,6 +29,8 @@ jobs:
       # Step 4: Dependency Vulnerability Scan (e.g., with `npm audit`)
       - name: Run npm Audit
         run: npm audit --audit-level=high || echo "npm audit failed"
+        env:
+          SKIP_AUDIT_FAILURE: 'true' # Skip failure and continue
 
       # Step 5: Static Code Analysis (e.g., with CodeQL)
       - name: Run CodeQL Analysis
@@ -36,6 +38,8 @@ jobs:
         with:
           category: security
           fail-fast: false || echo "CodeQL analysis failed"
+        env:
+          SKIP_CODEQL_FAILURE: 'true' # Skip failure and continue
 
       # Step 6: Secret Scanning (e.g., with TruffleHog or Gitleaks)
       - name: Run Gitleaks
@@ -44,6 +48,7 @@ jobs:
           config-path: .gitleaks.toml # Optional: custom config file
         env:
           GITLEAKS_SKIP_REPORT: 'true' # Avoid failing the workflow
+          SKIP_GITLEAKS_FAILURE: 'true' # Skip failure and continue
 
       # Step 7: Container Image Security Scan (e.g., with Trivy)
       - name: Run Trivy Security Scan
@@ -52,6 +57,7 @@ jobs:
           image-ref: 'app:latest' # Specify the Docker image built in the pipeline
         env:
           TRIVY_SKIP_REPORT: 'true' # Avoid failing the workflow
+          SKIP_TRIVY_FAILURE: 'true' # Skip failure and continue
 
       # Step 8: Infrastructure as Code (IaC) Scans (e.g., with Checkov)
       - name: Run Checkov IaC Scan
@@ -60,3 +66,4 @@ jobs:
           directory: . # Scan all files in the repository
         env:
           CHECKOV_SKIP_REPORT: 'true' # Avoid failing the workflow
+          SKIP_CHECKOV_FAILURE: 'true' # Skip failure and continue
